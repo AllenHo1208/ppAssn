@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Checkout</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+        body {
+            background: #EEE;
+        }
+
+        body,
+        input {
+            font-family: "Open Sans", sans-serif;
+            font-size: 1em;
+        }
+
+        h1 {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .item {
+            width: 60px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+
+        .button:hover {
+            background: #33B5E5;
+        }
+
+        .checkout {
+            margin: 0 auto;
+            width: 350px;
+        }
+
+        .addr input {
+            width: 100%;
+            outline: none;
+            border: 0px solid;
+            padding: 5px;
+        }
+
+        #button {
+            padding: 4px;
+            color: black;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checkout">
+        <h1>Checkout</h1>
+        <p>You are about to buy:</p>
+        <p>
+            <img class="item" title="Image of Cover" src="https://i.imgur.com/knxv5oN.jpg" />
+            <span id="productName">The PayPal Wars</span> for $<span id="amount">65.00</span>
+        </p>
+        <p>Ship to:</p>
+        <div class="addr">
+            <p>
+            <div id="address_line_1">5 Temasek Boulevard</div>
+            <div id="address_line_2">#09-01 Suntec Tower Five</div>
+            <div id="postal_code">038985</div>
+            <div id="country_name" country_code="SG">Singapore</div>
+            </p>
+        </div>
+        <div id="payPalBtn"></div>
+    </div>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AbLUs_oCNF3wf4nbYb6jH1AqeuG1WPsJSYivNpvequgIt4GdOcsKdHnQFhswldDbqyYvE6PN5zGcs13M&currency=USD"></script>
+    <script src='./Checkout.js'>
+    </script>
+</body>
+
+</html>
