@@ -12,6 +12,9 @@ app.use(express.static(path.join(__dirname, 'client')))
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'client', 'Checkout.html'))
 })
+app.get('/NotEnoughFund', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client', 'CheckoutNotEnoughFund.html'))
+})
 app.get('/Complete', function (req, res) {
     res.sendFile(path.join(__dirname, 'client', 'Complete.html'))
 })

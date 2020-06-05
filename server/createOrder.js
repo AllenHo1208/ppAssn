@@ -12,9 +12,10 @@ async function createOrder(req, res) {
         // return a successful response to the client with the order ID
         res.status(200).json({ orderID: order.result.id });
     } catch (err) {
+        console.error('createOrder catched error:');
         console.error(err);
-        return res.sendStatus(500);
+        res.status(err.statusCode).json({ error: JSON.parse(err.message) });
     }
 }
 
-module.exports = { createOrder };
+module.exports = { createOrder };   

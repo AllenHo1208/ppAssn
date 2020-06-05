@@ -14,8 +14,9 @@ async function captureOrder(req, res) {
         // await database.saveCaptureID(captureID);
         res.status(200).json(captureResponse.result);
     } catch (err) {
+        console.error('captureOrder catched error:');
         console.error(err);
-        return res.sendStatus(500);
+        res.status(err.statusCode).json({ error: JSON.parse(err.message) });
     }
 }
 

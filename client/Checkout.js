@@ -43,10 +43,18 @@ paypal.Buttons({
             return res.json();
         }).then(function (data) {
             return data.orderID;
+        }).catch(function (err) {
+            console.error(err);
         });
     },
     // onApprove function, called after the buyer approves the transaction on paypal.com
     onApprove: function (data, actions) {
+        $('body').waitMe({
+            effect: 'roundBounce',
+            text: 'Please Wait...',
+            bg: 'rgba(0,0,0,0.8)',
+            color: '#FFFFFF'
+        });
         return fetch('/api/captureOrder', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -54,9 +62,16 @@ paypal.Buttons({
         }).then(function (res) {
             return res.json();
         }).then(function (captureResult) {
-            window.location.replace(`./Complete?orderID=${captureResult.id}`);
+            if (captureResult.error) {
+                $('body').waitMe('hide');
+                return actions.restart();
+            } else {
+                window.location.replace(`./Complete?orderID=${captureResult.id}`);
+            }
         }).catch(function (err) {
             console.error(err);
+        }).finally(function () {
+            $('body').waitMe('hide');
         });
     }
 }).render('#payPalBtn');
